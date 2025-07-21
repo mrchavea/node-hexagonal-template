@@ -1,0 +1,7 @@
+POST http://localhost:3000/car
+Content-Type: application/json
+
+{
+    "brand": "FORD",
+    "horsePower": "1"
+}

@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  ms-car:
+    restart: always
+    build:
+      context: ./ms-car
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - mongo_car
+    ports:
+      - "${PORT:-3000}:3000" # Puerto de la aplicación
+      - "9229:9229" # Puerto para el depurador (debug)
+    command: npm run dev
+    tty: true
+    stdin_open: true
+    networks:
+      - my-network
+    volumes:
+      - ./ms-car:/app
+      - /ms-car/node_modules
+
+  mongo_car:
+    image: mongo
+    command: mongod --quiet
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - my-network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
