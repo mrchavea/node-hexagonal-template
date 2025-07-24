@@ -11,6 +11,8 @@ export class CarRoutes {
     const controller = new CarController(repository);
 
     router.post("/", controller.createCar);
+    router.patch("/:id", controller.updateCar);
+
     return router;
   }
 }

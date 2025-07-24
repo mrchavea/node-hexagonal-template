@@ -1,3 +1,4 @@
+### Create a new car
 POST http://localhost:3000/car
 Content-Type: application/json
 
@@ -5,3 +6,13 @@ Content-Type: application/json
     "brand": "FORD",
     "horsePower": "1"
 }
+
+### Patch an existing car
+PATCH http://localhost:3000/car/68819712237f0469660b90e2
+Content-Type: application/json
+
+{
+    "brand": "MERCEDES",
+    "horsePower": 2
+}
+
